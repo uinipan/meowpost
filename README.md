@@ -1,45 +1,51 @@
-# 阅读室 · Z-Library Reading Room
+<div align="center">
 
-<img src="public/app-icon.png" alt="阅读室" width="160">
+<img src="public/app-icon.png" alt="MeowPost" width="180">
 
-基于 [heartleo/zlib](https://github.com/heartleo/zlib) 的本地图形界面，提供搜索、版本查看、微信读书导入及独立 macOS 应用窗口。
+<h1>MeowPost</h1>
 
-A local graphical front end for [heartleo/zlib](https://github.com/heartleo/zlib), with WeRead imports and a macOS desktop window.
+<p>Find a book. Deliver it to your bookshelf.</p>
 
-## 上游项目与致谢
+<p>A local graphical front end for Z-Library, WeRead, and Kindle.</p>
 
-感谢 [heartleo](https://github.com/heartleo) 开发的 [zlib](https://github.com/heartleo/zlib)。Z-Library 连接、检索、下载、账号会话、微信读书与 Kindle 相关能力由上游 CLI 提供。本项目实现中文可视化界面、本机 HTTP 服务、传送队列、临时文件清理及 macOS 窗口封装，通过命令行和 MCP 接口调用上游。
+<p>
+  <img src="https://img.shields.io/badge/Node.js-22%2B-856653?style=flat-square" alt="Node.js 22 or newer">
+  <img src="https://img.shields.io/badge/macOS-12%2B-b8a797?style=flat-square" alt="macOS 12 or newer">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-c9a784?style=flat-square" alt="MIT License"></a>
+</p>
 
-上游项目采用 MIT 许可证。使用时请同时遵循其[许可证](https://github.com/heartleo/zlib/blob/main/LICENSE)及[使用说明](https://github.com/heartleo/zlib#readme)。
+<p><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
 
-## 功能
+<p><a href="#features">Features</a> · <a href="#installation">Install</a> · <a href="#quick-start">Quick start</a> · <a href="#macos-app">macOS app</a> · <a href="#privacy-and-local-data">Privacy</a> · <a href="#credits">Credits</a></p>
 
-- 按书名、作者或 ISBN 搜索，筛选格式、语言、出版年份及排序方式
-- 查看封面、出版社、译者、ISBN、简介、兴趣评分与文件质量评分
-- 浏览热门图书、个性化推荐、已有收藏和下载历史
-- 下载并导入微信读书，显示下载、上传和入架进度
-- 导入本地电子书，配置 Kindle 投递
-- 管理登录、微信扫码连接、域名、代理与偏好设置
-- 奶油杏与暖灰配色，支持浅色和深色主题
-- macOS 独立窗口、应用菜单及文件选择器
+</div>
 
-传送任务使用应用专属临时目录，任务结束后清理临时副本。点击“保存到电脑”会将文件保存在用户的下载文件夹。本地导入所选择的源文件仍由用户管理。
+## Features
 
-## 运行环境
+- **Find and compare** — search by title, author, or ISBN. Filter by format, language, and publication year. Inspect editions, descriptions, interest scores, and file-quality scores.
+- **Deliver to WeRead** — download and import a book with progress for download, upload, and bookshelf confirmation.
+- **Send to Kindle** — configure email delivery and send ebooks through the upstream CLI.
+- **Import your files** — select a local EPUB, PDF, MOBI, AZW3, or TXT file for delivery.
+- **Keep track** — browse recommendations, popular books, existing favorites, download history, and transfer tasks.
+- **Make it yours** — manage accounts, mirrors, proxies, and search preferences in a cream-and-taupe interface with light and dark themes.
+- **Use a Mac window** — open the interface in a dedicated application with menus and a native file picker.
 
-- Node.js 22 或更新版本
-- 已安装的 `zlib` CLI，当前版本基于 `v0.0.14` 验证
-- 构建 macOS 应用需要 Xcode Command Line Tools
+MeowPost invokes the local `zlib` CLI for book services. The application interface currently uses Simplified Chinese.
 
-macOS 可以通过 Homebrew 安装上游 CLI。
+## Installation
+
+Requires Node.js 22 or newer and the upstream `zlib` CLI. The current integration has been checked with `zlib v0.0.14`.
+
+On macOS, install them with Homebrew.
 
 ```sh
+brew install node
 brew install heartleo/tap/zlib-cli
 ```
 
-其他安装方式请查看上游[安装文档](https://github.com/heartleo/zlib/blob/main/docs/installation.md)。
+For other CLI installation methods, see the upstream [installation guide](https://github.com/heartleo/zlib/blob/main/docs/installation.md).
 
-## 浏览器中运行
+## Quick start
 
 ```sh
 git clone https://github.com/uinipan/zlib-reading-room.git
@@ -47,70 +53,79 @@ cd zlib-reading-room
 npm start
 ```
 
-打开 <http://127.0.0.1:4318>。项目使用 Node.js 内置模块，可以直接运行。
+Open [127.0.0.1:4318](http://127.0.0.1:4318). The server uses Node.js built-in modules and runs directly from the checkout.
 
-首次使用，在“账号与连接”页面检测可用域名、登录 Z-Library，并扫码连接微信读书。已有的本机 `zlib` 登录可以直接复用。
+1. Open **Accounts & connections** (`账号与连接`) and check available Z-Library domains.
+2. Sign in to Z-Library and scan the WeChat QR code to connect WeRead. Existing local CLI sessions can be reused.
+3. Search for a book, compare its editions, and choose **Import to WeRead** (`导入微信读书`).
+4. Follow the transfer in **Transfer tasks** (`传送任务`), then open WeRead to read it.
 
-## 构建 macOS 应用
+Transfer jobs use an application-owned temporary directory. Temporary copies are cleaned up when a job finishes. **Save to computer** explicitly keeps a copy in your Downloads folder. Local files selected for import remain under your control.
 
-安装 Xcode Command Line Tools 后，在项目目录执行以下命令。
+## macOS app
+
+Requires macOS 12 or newer and Xcode Command Line Tools. From the checkout, build the application.
 
 ```sh
 npm run build:mac
 ```
 
-默认输出到 `~/Applications/Z-Library 阅读室.app`。双击应用即可打开独立窗口，并自动连接或启动本机服务。
+The default output is `~/Applications/Z-Library 阅读室.app`. Open it to launch a dedicated window and connect to or start the local service.
 
-可以指定构建输出目录。
+To choose an output path, use the build environment variable.
 
 ```sh
-APP_OUTPUT_DIR="$PWD/build/Z-Library 阅读室.app" npm run build:mac
+APP_OUTPUT_DIR="$PWD/build/MeowPost.app" npm run build:mac
 ```
 
-构建脚本使用本机临时签名，适合在本机使用。分发应用时可按需要配置 Apple Developer 签名与公证。
+The build uses an ad-hoc local signature. Distribution can be configured with Apple Developer signing and notarization.
 
-## 本机配置与数据
+## Privacy and local data
 
-| 位置 | 内容 |
+The service listens on `127.0.0.1`. Authentication sessions and delivery settings belong to each user's local installation.
+
+| Location | Contents |
 | --- | --- |
-| `~/.config/zlib/` | 上游 CLI 的登录会话、网络设置和投递配置 |
-| `~/.local/share/zlib-ui/` | 界面偏好、传送任务元数据及专属临时目录 |
-| 系统临时目录中的 `zlib-reading-room.log` | macOS 应用启动日志 |
+| `~/.config/zlib/` | Upstream sessions, network settings, and delivery configuration |
+| `~/.local/share/zlib-ui/` | Interface preferences, transfer metadata, and application-owned temporary files |
+| `zlib-reading-room.log` in the system temporary directory | macOS startup log |
 
-HTTP 服务监听 `127.0.0.1`。账号、密码、Cookie、微信读书会话和 SMTP 授权码使用用户自己的本机配置。提交代码前请检查 Git 暂存区，`.gitignore` 已包含常见配置、凭据、日志、电子书与个人截图规则。
+The repository's `.gitignore` covers common credential files, environment configuration, logs, ebooks, and personal screenshots. Review staged files before publishing changes.
 
-可通过环境变量调整运行位置。
+## Configuration
 
-| 变量 | 用途 |
+| Variable | Purpose |
 | --- | --- |
-| `ZLIB_UI_BINARY` | 指定 `zlib` 可执行文件路径 |
-| `ZLIB_UI_STATE_DIR` | 指定应用数据目录 |
-| `PORT` | 浏览器模式的服务端口，默认 `4318` |
-| `APP_OUTPUT_DIR` | macOS 应用构建输出路径 |
+| `ZLIB_UI_BINARY` | Path to the `zlib` executable |
+| `ZLIB_UI_STATE_DIR` | Application data directory |
+| `PORT` | Browser-mode port, defaults to `4318` |
+| `APP_OUTPUT_DIR` | macOS build output path |
 
-macOS 窗口使用固定的本机端口 `4318`。`zlib` 的网络、搜索、代理和 SMTP 设置可在界面中配置，详见上游[配置文档](https://github.com/heartleo/zlib/blob/main/docs/configuration.md)。
+The macOS window connects to port `4318`. Network, search, proxy, and SMTP settings can be edited in the interface. The upstream [configuration guide](https://github.com/heartleo/zlib/blob/main/docs/configuration.md) describes the CLI settings.
 
-## 开发检查
+## Development
 
 ```sh
 npm run check
 ```
 
-主要文件如下。
-
-| 文件 | 职责 |
+| Path | Responsibility |
 | --- | --- |
-| `server.mjs` | 本机服务、CLI 调用、任务队列及临时文件清理 |
-| `public/` | 中文界面、样式与应用图标 |
-| `native/ReadingRoom.swift` | AppKit / WKWebView 应用窗口 |
-| `native/build.sh` | macOS 应用与图标打包 |
+| `server.mjs` | Local HTTP service, CLI integration, transfer queue, and temporary-file cleanup |
+| `public/` | Interface, styles, and application icon |
+| `native/ReadingRoom.swift` | AppKit / WKWebView desktop window |
+| `native/build.sh` | macOS application and icon packaging |
 
-## 当前验证范围
+Live search, account connections, book details, and listing endpoints have been checked. Isolated checks cover successful and failed jobs, duplicate submissions, and temporary-file cleanup after restart. Kindle delivery has not yet been tested end to end. Automated visual verification of the native window is still pending.
 
-真实搜索、账号连接、图书详情和列表接口已验证。任务成功、失败、重复提交和重启后的临时文件清理已通过隔离测试。Kindle 实际投递尚未验证，macOS 原生窗口的自动视觉检查尚未完成。
+WeRead integration follows the upstream implementation. Verification requests, supported formats, and import limits depend on WeRead's responses. Use your own accounts and ebooks you are entitled to access.
 
-微信读书导入使用上游实现的接口，账号验证、支持格式和导入限制以微信读书实际返回为准。请使用自己的账号并导入有权使用的电子书。
+## Credits
 
-## 许可证
+MeowPost is built on the capabilities of **zlib**, created by **heartleo**. The upstream CLI provides Z-Library connectivity, search, downloads, account sessions, and WeRead / Kindle integration. MeowPost adds the graphical interface, local service, transfer workflow, and Mac window through CLI and MCP calls. [Upstream project](https://github.com/heartleo/zlib) · [Author](https://github.com/heartleo)
 
-本项目采用 [MIT License](LICENSE)。
+The upstream project is licensed under MIT. Please refer to its license and usage documentation. [Upstream license](https://github.com/heartleo/zlib/blob/main/LICENSE) · [Upstream documentation](https://github.com/heartleo/zlib#readme)
+
+## License
+
+MeowPost is available under the [MIT License](LICENSE).
