@@ -16,7 +16,7 @@
 
 <p><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
 
-<p><a href="#features">Features</a> · <a href="#installation">Install</a> · <a href="#quick-start">Quick start</a> · <a href="#macos-app">macOS app</a> · <a href="#privacy-and-local-data">Privacy</a> · <a href="#credits">Credits</a></p>
+<p><a href="#features">Features</a> · <a href="#platforms">Platforms</a> · <a href="#installation">Install</a> · <a href="#quick-start">Quick start</a> · <a href="#macos-app">macOS app</a> · <a href="#privacy-and-local-data">Privacy</a> · <a href="#credits">Credits</a></p>
 
 </div>
 
@@ -32,6 +32,15 @@
 
 MeowPost invokes the local `zlib` CLI for book services. The application interface currently uses Simplified Chinese.
 
+## Platforms
+
+| Platform | Application mode | Verification |
+| --- | --- | --- |
+| macOS | Browser interface and dedicated Mac application | Live service and integration checks completed; automated native-window visual verification pending |
+| Windows | Browser interface | Executable discovery supports `zlib.exe` on `PATH`; awaiting testing on Windows |
+
+The dedicated desktop application uses macOS AppKit and WKWebView. On Windows, use the local browser interface for searching and transferring books.
+
 ## Installation
 
 Requires Node.js 22 or newer and the upstream `zlib` CLI. The current integration has been checked with `zlib v0.0.14`.
@@ -42,6 +51,26 @@ On macOS, install them with Homebrew.
 brew install node
 brew install heartleo/tap/zlib-cli
 ```
+
+### Windows
+
+Install Node.js 22 or newer, Git, and the upstream CLI. These PowerShell commands use WinGet.
+
+```powershell
+winget install --id OpenJS.NodeJS.LTS --exact
+winget install --id Git.Git --exact
+winget install --id heartleo.zlib --exact
+```
+
+After installation, open a new PowerShell window so the updated `PATH` takes effect, then start MeowPost.
+
+```powershell
+git clone https://github.com/uinipan/zlib-reading-room.git
+cd zlib-reading-room
+npm.cmd start
+```
+
+Open [127.0.0.1:4318](http://127.0.0.1:4318). Windows compatibility has not yet been tested on a Windows machine.
 
 For other CLI installation methods, see the upstream [installation guide](https://github.com/heartleo/zlib/blob/main/docs/installation.md).
 

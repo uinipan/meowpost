@@ -16,7 +16,7 @@
 
 <p><a href="README.md">English</a> · <strong>简体中文</strong></p>
 
-<p><a href="#功能">功能</a> · <a href="#安装">安装</a> · <a href="#快速开始">快速开始</a> · <a href="#macos-应用">macOS 应用</a> · <a href="#隐私与本机数据">隐私</a> · <a href="#致谢">致谢</a></p>
+<p><a href="#功能">功能</a> · <a href="#平台支持">平台支持</a> · <a href="#安装">安装</a> · <a href="#快速开始">快速开始</a> · <a href="#macos-应用">macOS 应用</a> · <a href="#隐私与本机数据">隐私</a> · <a href="#致谢">致谢</a></p>
 
 </div>
 
@@ -32,6 +32,15 @@
 
 喵邮局通过本机 `zlib` CLI 调用图书服务，当前应用界面使用简体中文。
 
+## 平台支持
+
+| 平台 | 使用方式 | 验证情况 |
+| --- | --- | --- |
+| macOS | 浏览器界面、独立 Mac 应用 | 已完成真实服务与集成检查，原生窗口的自动视觉验证待完成 |
+| Windows | 浏览器界面 | 代码支持从 `PATH` 查找 `zlib.exe`，Windows 实机验证待完成 |
+
+独立桌面应用基于 macOS 的 AppKit 和 WKWebView。Windows 可通过本机浏览器界面进行搜索与图书传送。
+
 ## 安装
 
 需要 Node.js 22 或更新版本，以及上游 `zlib` CLI。当前集成已基于 `zlib v0.0.14` 验证。
@@ -42,6 +51,26 @@ macOS 可以通过 Homebrew 安装。
 brew install node
 brew install heartleo/tap/zlib-cli
 ```
+
+### Windows
+
+需要 Node.js 22 或更新版本、Git 和上游 CLI。可以在 PowerShell 中使用 WinGet 安装。
+
+```powershell
+winget install --id OpenJS.NodeJS.LTS --exact
+winget install --id Git.Git --exact
+winget install --id heartleo.zlib --exact
+```
+
+安装后重新打开 PowerShell，使更新后的 `PATH` 生效，然后启动喵邮局。
+
+```powershell
+git clone https://github.com/uinipan/zlib-reading-room.git
+cd zlib-reading-room
+npm.cmd start
+```
+
+打开 [127.0.0.1:4318](http://127.0.0.1:4318) 使用。Windows 兼容性尚未在 Windows 设备上实测。
 
 其他 CLI 安装方式请查看上游[安装文档](https://github.com/heartleo/zlib/blob/main/docs/installation.md)。
 
