@@ -206,3 +206,6 @@ input[type="checkbox"] { accent-color: var(--primary); }
   .filter-control:nth-child(2) .filter-options { left: auto; right: 0; }
   .advanced label { margin-left: 0; }
 }
+
+.nav-icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.nav-icon svg { display: block; width: 23px; height: 23px; stroke-width: 1.7; overflow: visible; }
