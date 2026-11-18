@@ -20,6 +20,12 @@
 
 </div>
 
+<p align="center">
+  <img src="docs/images/meowpost-macos.png" alt="喵邮局 macOS 窗口示范" width="1100">
+</p>
+
+<p align="center"><sub>基于用户提供的窗口截图，经 AI 辅助脱敏并调整品牌文字。</sub></p>
+
 ## 功能
 
 - **找书与选版本** — 按书名、作者或 ISBN 搜索，筛选格式、语言与出版年份，查看版本、简介、兴趣评分和文件质量评分。
@@ -65,8 +71,8 @@ winget install --id heartleo.zlib --exact
 安装后重新打开 PowerShell，使更新后的 `PATH` 生效，然后启动喵邮局。
 
 ```powershell
-git clone https://github.com/uinipan/zlib-reading-room.git
-cd zlib-reading-room
+git clone https://github.com/uinipan/meowpost.git
+cd meowpost
 npm.cmd start
 ```
 
@@ -77,8 +83,8 @@ npm.cmd start
 ## 快速开始
 
 ```sh
-git clone https://github.com/uinipan/zlib-reading-room.git
-cd zlib-reading-room
+git clone https://github.com/uinipan/meowpost.git
+cd meowpost
 npm start
 ```
 
@@ -99,7 +105,7 @@ npm start
 npm run build:mac
 ```
 
-默认输出到 `~/Applications/Z-Library 阅读室.app`。双击后打开独立窗口，并自动连接或启动本机服务。
+默认输出到 `~/Applications/MeowPost.app`。双击后打开独立窗口，并自动连接或启动本机服务。
 
 可以通过环境变量指定构建输出位置。
 
@@ -117,7 +123,7 @@ APP_OUTPUT_DIR="$PWD/build/MeowPost.app" npm run build:mac
 | --- | --- |
 | `~/.config/zlib/` | 上游登录会话、网络设置和投递配置 |
 | `~/.local/share/zlib-ui/` | 界面偏好、传送任务元数据及应用专属临时文件 |
-| 系统临时目录中的 `zlib-reading-room.log` | macOS 应用启动日志 |
+| 系统临时目录中的 `meowpost.log` | macOS 应用启动日志 |
 
 仓库的 `.gitignore` 已覆盖常见凭据文件、环境配置、日志、电子书与个人截图。发布更改前请检查 Git 暂存区。
 

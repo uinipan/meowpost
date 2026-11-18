@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-APP_DIR="${APP_OUTPUT_DIR:-${HOME}/Applications/Z-Library 阅读室.app}"
+APP_DIR="${APP_OUTPUT_DIR:-${HOME}/Applications/MeowPost.app}"
 BUILD_DIR="$(mktemp -d /tmp/zlib-native-build.XXXXXX)"
 trap 'rm -rf "$BUILD_DIR"' EXIT
 

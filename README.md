@@ -20,6 +20,12 @@
 
 </div>
 
+<p align="center">
+  <img src="docs/images/meowpost-macos.png" alt="MeowPost macOS window" width="1100">
+</p>
+
+<p align="center"><sub>Window preview based on a user-provided screenshot. Account details were redacted and branding text was updated with AI assistance.</sub></p>
+
 ## Features
 
 - **Find and compare** — search by title, author, or ISBN. Filter by format, language, and publication year. Inspect editions, descriptions, interest scores, and file-quality scores.
@@ -65,8 +71,8 @@ winget install --id heartleo.zlib --exact
 After installation, open a new PowerShell window so the updated `PATH` takes effect, then start MeowPost.
 
 ```powershell
-git clone https://github.com/uinipan/zlib-reading-room.git
-cd zlib-reading-room
+git clone https://github.com/uinipan/meowpost.git
+cd meowpost
 npm.cmd start
 ```
 
@@ -77,8 +83,8 @@ For other CLI installation methods, see the upstream [installation guide](https:
 ## Quick start
 
 ```sh
-git clone https://github.com/uinipan/zlib-reading-room.git
-cd zlib-reading-room
+git clone https://github.com/uinipan/meowpost.git
+cd meowpost
 npm start
 ```
 
@@ -99,7 +105,7 @@ Requires macOS 12 or newer and Xcode Command Line Tools. From the checkout, buil
 npm run build:mac
 ```
 
-The default output is `~/Applications/Z-Library 阅读室.app`. Open it to launch a dedicated window and connect to or start the local service.
+The default output is `~/Applications/MeowPost.app`. Open it to launch a dedicated window and connect to or start the local service.
 
 To choose an output path, use the build environment variable.
 
@@ -117,7 +123,7 @@ The service listens on `127.0.0.1`. Authentication sessions and delivery setting
 | --- | --- |
 | `~/.config/zlib/` | Upstream sessions, network settings, and delivery configuration |
 | `~/.local/share/zlib-ui/` | Interface preferences, transfer metadata, and application-owned temporary files |
-| `zlib-reading-room.log` in the system temporary directory | macOS startup log |
+| `meowpost.log` in the system temporary directory | macOS startup log |
 
 The repository's `.gitignore` covers common credential files, environment configuration, logs, ebooks, and personal screenshots. Review staged files before publishing changes.
 

@@ -400,7 +400,7 @@ server.listen(port, '127.0.0.1', async () => {
     await fs.rm(scratchDir, { recursive: true, force: true });
     await fs.mkdir(scratchDir, { recursive: true, mode: 0o700 });
     finishStartup();
-    console.log(`Z-Library 阅读室已启动 ${origin}`);
+    console.log(`喵邮局 MeowPost 已启动 ${origin}`);
   } catch (e) { console.error(e.message); process.exit(1); }
 });
 server.on('error', e => { console.error(e.code === 'EADDRINUSE' ? `端口 ${port} 已被占用` : e.message); process.exit(1); });

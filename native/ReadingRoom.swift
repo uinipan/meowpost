@@ -27,7 +27,7 @@ final class ReadingRoomDelegate: NSObject, NSApplicationDelegate, WKNavigationDe
         window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1220, height: 830),
                           styleMask: [.titled, .closable, .miniaturizable, .resizable],
                           backing: .buffered, defer: false)
-        window.title = "阅读室"
+        window.title = "喵邮局"
         window.backgroundColor = NSColor(calibratedRed: 0.984, green: 0.969, blue: 0.945, alpha: 1)
         window.titlebarAppearsTransparent = true
         window.minSize = NSSize(width: 790, height: 600)
@@ -45,10 +45,10 @@ final class ReadingRoomDelegate: NSObject, NSApplicationDelegate, WKNavigationDe
         let menu = NSMenu()
         let appItem = NSMenuItem()
         let appMenu = NSMenu()
-        appMenu.addItem(withTitle: "关于阅读室", action: #selector(showAbout), keyEquivalent: "")
+        appMenu.addItem(withTitle: "关于喵邮局", action: #selector(showAbout), keyEquivalent: "")
         appMenu.addItem(.separator())
-        appMenu.addItem(withTitle: "隐藏阅读室", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
-        appMenu.addItem(withTitle: "退出阅读室", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appMenu.addItem(withTitle: "隐藏喵邮局", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
+        appMenu.addItem(withTitle: "退出喵邮局", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         appItem.submenu = appMenu
         menu.addItem(appItem)
 
@@ -78,7 +78,7 @@ final class ReadingRoomDelegate: NSObject, NSApplicationDelegate, WKNavigationDe
 
     private func showLoading() {
         webView.loadHTMLString("""
-        <html><meta charset="utf-8"><body style="margin:0;display:grid;place-items:center;height:100vh;background:#fbf7f1;color:#856653;font-family:-apple-system"><div style="text-align:center"><h1 style="font-family:serif;font-weight:500">阅读室</h1><p style="font-size:13px">正在连接你的图书馆…</p></div></body></html>
+        <html><meta charset="utf-8"><body style="margin:0;display:grid;place-items:center;height:100vh;background:#fbf7f1;color:#856653;font-family:-apple-system"><div style="text-align:center"><h1 style="font-family:serif;font-weight:500">喵邮局</h1><p style="font-size:13px">正在连接你的图书馆…</p></div></body></html>
         """, baseURL: nil)
     }
 
@@ -113,13 +113,13 @@ final class ReadingRoomDelegate: NSObject, NSApplicationDelegate, WKNavigationDe
         let process = Process()
         let nodeCandidates = ["/usr/local/bin/node", "/opt/homebrew/bin/node"]
         guard let node = nodeCandidates.first(where: { FileManager.default.isExecutableFile(atPath: $0) }) else {
-            showFailure("未找到 Node.js。请安装 Node.js 后重新打开阅读室。")
+            showFailure("未找到 Node.js。请安装 Node.js 后重新打开喵邮局。")
             return
         }
         process.executableURL = URL(fileURLWithPath: node)
         process.arguments = [runtime.appendingPathComponent("server.mjs").path]
         process.currentDirectoryURL = runtime
-        let logURL = FileManager.default.temporaryDirectory.appendingPathComponent("zlib-reading-room.log")
+        let logURL = FileManager.default.temporaryDirectory.appendingPathComponent("meowpost.log")
         FileManager.default.createFile(atPath: logURL.path, contents: nil)
         if let log = try? FileHandle(forWritingTo: logURL) {
             backendLog = log
@@ -134,7 +134,7 @@ final class ReadingRoomDelegate: NSObject, NSApplicationDelegate, WKNavigationDe
         guard !stopping else { return }
         attempts = 35
         let alert = NSAlert()
-        alert.messageText = "阅读室暂时无法连接"
+        alert.messageText = "喵邮局暂时无法连接"
         alert.informativeText = message
         alert.addButton(withTitle: "重试")
         alert.addButton(withTitle: "退出")
@@ -152,7 +152,7 @@ final class ReadingRoomDelegate: NSObject, NSApplicationDelegate, WKNavigationDe
     @objc private func zoomOut() { webView.pageZoom = max(0.7, webView.pageZoom - 0.1) }
     @objc private func resetZoom() { webView.pageZoom = 1 }
     @objc private func showAbout() {
-        NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "阅读室", .applicationVersion: "1.2.0", .credits: NSAttributedString(string: "你的私人图书馆 · Z-Library 与微信读书")])
+        NSApp.orderFrontStandardAboutPanel(options: [.applicationName: "喵邮局", .applicationVersion: "1.3.0", .credits: NSAttributedString(string: "把想读的书，递到你的书架。 · Powered by heartleo/zlib")])
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

@@ -25,7 +25,7 @@ async function api(endpoint, data, options = {}) {
   return result;
 }
 function heading(title, subtitle, action = '') {
-  return `<span class="eyebrow">YOUR READING ROOM</span><div class="page-heading"><div><h1>${escape(title)}</h1><p>${escape(subtitle)}</p></div>${action}</div>`;
+  return `<span class="eyebrow">MEOWPOST</span><div class="page-heading"><div><h1>${escape(title)}</h1><p>${escape(subtitle)}</p></div>${action}</div>`;
 }
 function loading() { return '<div class="loading"><span class="spinner"></span>正在寻找好书…</div>'; }
 function errorHTML(error) { return `<div class="error">${escape(error)}<br><button class="button secondary small" data-action="retry">重新加载</button> <button class="button secondary small" data-view="accounts">检查账号连接</button></div>`; }

@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fbf7f1">
-  <title>阅读室 · Z-Library</title>
-  <link rel="icon" type="image/png" href="/app-icon.png?v=20261118-cream">
-  <link rel="stylesheet" href="/style.css?v=20261118-cream">
-  <script type="module" src="/app.js?v=20261118-cream"></script>
+  <title>喵邮局 · MeowPost</title>
+  <link rel="icon" type="image/png" href="/app-icon.png?v=20261118-meowpost">
+  <link rel="stylesheet" href="/style.css?v=20261118-meowpost">
+  <script type="module" src="/app.js?v=20261118-meowpost"></script>
 </head>
 <body>
   <aside class="sidebar">
-    <a class="brand" href="#search"><img class="brand-icon" src="/app-icon.png?v=20261118-cream" alt="阅读室"><span>阅读室<small>Z-LIBRARY</small></span></a>
+    <a class="brand" href="#search"><img class="brand-icon" src="/app-icon.png?v=20261118-meowpost" alt="喵邮局"><span>喵邮局<small>MEOWPOST</small></span></a>
     <div class="nav-label">我的图书馆</div>
     <nav aria-label="主导航">
       <button data-view="search" class="nav-item active"><span>⌕</span>搜索图书</button>
@@ -34,7 +34,7 @@
   <div class="workspace">
     <header class="topbar"><span id="breadcrumb">我的图书馆 <b>/</b> 搜索图书</span><div class="topbar-right"><span class="local-pill"><i></i> 本机运行</span><button class="icon-button" id="theme-toggle" aria-label="切换明暗主题">◐</button></div></header>
     <main id="main" tabindex="-1"></main>
-    <footer><span>Z-Library 阅读室</span><span>让好书，从这里抵达书架。</span></footer>
+    <footer><span>喵邮局 · MeowPost</span><span>把想读的书，递到你的书架。</span></footer>
   </div>
   <dialog id="book-dialog" aria-labelledby="detail-title"><button class="dialog-close" aria-label="关闭">×</button><div id="book-detail"></div></dialog>
   <dialog id="qr-dialog" aria-labelledby="qr-title"><button class="dialog-close" aria-label="关闭">×</button><div class="qr-dialog"><span class="eyebrow">WECHAT READ</span><h2 id="qr-title">连接微信读书</h2><p id="qr-status">正在生成二维码…</p><canvas id="qr-canvas" width="320" height="320" aria-label="微信读书登录二维码"></canvas><button class="button secondary" id="qr-refresh">重新获取二维码</button><small>用手机微信扫码并确认登录</small></div></dialog>
