@@ -1,0 +1,20 @@
+{
+  "name": "zlib-reading-room",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check server.mjs && node --check public/app.js",
+    "build:mac": "bash native/build.sh"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "description": "A local graphical front end for heartleo/zlib with a macOS desktop window and WeRead imports.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uinipan/zlib-reading-room.git"
+  }
+}

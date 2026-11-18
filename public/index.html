@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf7f1">
+  <title>阅读室 · Z-Library</title>
+  <link rel="icon" type="image/png" href="/app-icon.png?v=20261118-cream">
+  <link rel="stylesheet" href="/style.css?v=20261118-cream">
+  <script type="module" src="/app.js?v=20261118-cream"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#search"><img class="brand-icon" src="/app-icon.png?v=20261118-cream" alt="阅读室"><span>阅读室<small>Z-LIBRARY</small></span></a>
+    <div class="nav-label">我的图书馆</div>
+    <nav aria-label="主导航">
+      <button data-view="search" class="nav-item active"><span>⌕</span>搜索图书</button>
+      <button data-view="popular" class="nav-item"><span>◈</span>热门图书</button>
+      <button data-view="recommended" class="nav-item"><span>✧</span>为你推荐</button>
+      <button data-view="favorites" class="nav-item"><span>♡</span>我的收藏</button>
+      <button data-view="history" class="nav-item"><span>◷</span>下载历史</button>
+    </nav>
+    <div class="nav-label nav-space">传送与管理</div>
+    <nav aria-label="管理导航">
+      <button data-view="transfers" class="nav-item"><span>⇄</span>传送任务<i id="task-count" hidden></i></button>
+      <button data-view="accounts" class="nav-item"><span>♙</span>账号与连接</button>
+      <button data-view="settings" class="nav-item"><span>⚙</span>偏好设置</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="connection"><span class="status-dot" id="connection-dot"></span><div>微信读书<small id="sidebar-weread">正在检查连接</small></div><span>↗</span></div>
+      <button class="user-card" data-view="accounts"><span class="avatar" id="avatar">读</span><span id="sidebar-name">我的阅读账号<small>查看账号与下载额度</small></span><span>›</span></button>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span id="breadcrumb">我的图书馆 <b>/</b> 搜索图书</span><div class="topbar-right"><span class="local-pill"><i></i> 本机运行</span><button class="icon-button" id="theme-toggle" aria-label="切换明暗主题">◐</button></div></header>
+    <main id="main" tabindex="-1"></main>
+    <footer><span>Z-Library 阅读室</span><span>让好书，从这里抵达书架。</span></footer>
+  </div>
+  <dialog id="book-dialog" aria-labelledby="detail-title"><button class="dialog-close" aria-label="关闭">×</button><div id="book-detail"></div></dialog>
+  <dialog id="qr-dialog" aria-labelledby="qr-title"><button class="dialog-close" aria-label="关闭">×</button><div class="qr-dialog"><span class="eyebrow">WECHAT READ</span><h2 id="qr-title">连接微信读书</h2><p id="qr-status">正在生成二维码…</p><canvas id="qr-canvas" width="320" height="320" aria-label="微信读书登录二维码"></canvas><button class="button secondary" id="qr-refresh">重新获取二维码</button><small>用手机微信扫码并确认登录</small></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

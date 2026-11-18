@@ -1,0 +1,36 @@
+# Dependencies and build output
+node_modules/
+build/
+dist/
+*.app/
+.DS_Store
+
+# Local configuration, credentials, and session data
+.env
+.env.*
+.config/
+.local/
+state/
+temporary/
+logs/
+*.log
+*.key
+*.pem
+*.p12
+*.pfx
+cookies*
+session*.json
+weread.json
+kindle.json
+jobs.json
+preferences.json
+
+# Personal screenshots and ebook files
+preview.png
+ratings-preview.png
+downloads/
+books/
+*.epub
+*.mobi
+*.azw3
+*.pdf
