@@ -112,6 +112,17 @@ async function loadBooks() {
   try { const data = await api(`books?${params}`); if (request === state.request) renderBooks(data); }
   catch (e) { if (request === state.request && $('#results')) $('#results').innerHTML = errorHTML(e.message); }
 }
+function searchFromForm(form, { requireQuery = false } = {}) {
+  if (!form.reportValidity()) return;
+  const values = Object.fromEntries(new FormData(form));
+  const query = String(values.query || '').trim();
+  if (requireQuery && !query) { toast('请输入书名、作者或 ISBN'); return; }
+  state.query = query;
+  for (const key of ['format', 'language', 'order', 'from', 'to']) state[key] = values[key];
+  state.exact = values.exact === 'on';
+  state.page = 1;
+  return loadBooks();
+}
 function refreshStatus() {
   if (statusPending) return statusPending;
   statusPending = fetchStatus().finally(() => { statusPending = null; });
@@ -279,12 +290,14 @@ document.addEventListener('click', async event => {
   if (button.dataset.filterName) {
     const control = button.closest('.filter-control');
     const trigger = control.querySelector('.filter-trigger');
+    const changed = control.querySelector('input').value !== button.dataset.filterValue;
     control.querySelector('input').value = button.dataset.filterValue;
     control.querySelector('.filter-value').textContent = button.querySelector('span').textContent;
     trigger.setAttribute('aria-label', `${control.querySelector('.filter-caption').textContent}，${button.querySelector('span').textContent}`);
     control.querySelectorAll('[role="option"]').forEach(option => option.setAttribute('aria-selected', String(option === button)));
     closeFilterMenus();
     trigger.focus();
+    if (changed) return searchFromForm(button.closest('form'));
     return;
   }
   if (button.dataset.view) return navigate(button.dataset.view);
@@ -336,11 +349,7 @@ document.addEventListener('submit', async event => {
   const form = event.target; event.preventDefault();
   const values = Object.fromEntries(new FormData(form));
   if (form.id === 'search-form') {
-    state.query = String(values.query).trim();
-    if (!state.query) { toast('请输入书名、作者或 ISBN'); return; }
-    for (const key of ['format', 'language', 'order', 'from', 'to']) state[key] = values[key];
-    state.exact = values.exact === 'on'; state.page = 1;
-    return loadBooks();
+    return searchFromForm(form, { requireQuery: true });
   }
   const submit = $('button[type=submit]', form) || $('button', form);
   submit.disabled = true;
@@ -369,6 +378,7 @@ document.addEventListener('submit', async event => {
   finally { submit.disabled = false; }
 });
 document.addEventListener('change', async event => {
+  if (event.target.closest('#advanced-filters')) return searchFromForm(event.target.closest('form'));
   if (event.target.id !== 'upload-file') return;
   const file = event.target.files[0]; if (!file) return;
   const target = event.target.dataset.target || 'weread';
